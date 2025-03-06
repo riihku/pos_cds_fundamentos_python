@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
-
+import gdown
 from PIL import Image
 
 def definicao_parametros_graficos():
@@ -378,8 +378,12 @@ def insights(c_df, s_df):
 if __name__ == '__main__':
 
     definicao_parametros_graficos()
+    url = "https://drive.google.com/uc?id=1PgdkcfZUvW_IyG5Z4ZXH_AMKNgAE__c-"
+    output = "order_items_cleaned.csv"
+    gdown.download(url, output, quiet=False)
 
-    order_items_df = pd.read_csv('../datasets/order_items_cleaned.csv')
+    order_items_df = pd.read_csv(output)
+    # order_items_df = pd.read_csv('../datasets/order_items_cleaned.csv')
     
     # Side Bar (Filtros)
     customers_df_filtered, sellers_df_filtered = aplicar_filtros(order_items_df)
